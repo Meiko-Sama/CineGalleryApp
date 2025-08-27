@@ -43,6 +43,9 @@ export default function SignIn() {
 
       <View style={styles.div}>
         <Text style={styles.details}>Não tem uma conta ainda?</Text>
+
+        {/* AQUI TEM QUE TER A FUNÇÃO ASSINCRONA SUPONHO!! */}
+
         <Pressable onPress={() => Navigation.navigate("SignUp")}>
           <Text style={{ color: "#345577", fontWeigh: "bold" }}> Crie uma aqui! </Text>
         </Pressable>
