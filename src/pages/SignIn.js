@@ -12,15 +12,27 @@ import { styles } from '../styles/styles';
 
 // IMPORTAÇÃO NATIVE
 import { useNavigation } from '@react-navigation/native';
+import { setItem } from '../components/AsyncStorage';
+
+// IMPORTAÇÃO DE ICONE
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
 
 export default function SignIn() {
 
-  const Navigation = useNavigation();
+  const navigation = useNavigation();
 
+  // FAZENDO FUNÇÃO DO BOTÃO ENVIAR PARA PAGINA HOME
+  const handleLogin = async () => {
+
+    await setItem("login", "1")
+    navigation.navigate("Home")
+  }
   return (
     <ImageBackground style={styles.containerSI} source={require("../images/LoginScreen.jpg")}>
+      <MaterialIcons name="movie" size={100} color="white" style={{ left: -120, bottom: 180 }} />
 
-      <Foundation name="mountains" size={70} color="#345577" style={{ bottom: 190, right: 130 }} />
+
 
       <Text style={styles.tituloSI}>ACESSE SUA CONTA!</Text>
       <Text style={styles.subTituloSI}> Bem vindo de volta usuário!</Text>
@@ -30,24 +42,11 @@ export default function SignIn() {
         <InputComp textPlaceHolder={"Digite seu email"} password={false} />
         <TextComp txt="Senha:" />
         <InputComp textPlaceHolder={"Digite sua senha"} password={true} />
-
-
-        <Pressable style={{ position: 'absolute', right: -10, bottom: 15 }} onPress={() => { }}>
-          <Text style={{ color: "#6ea2d0", fontSize: 12 }}>Forgot your password?</Text>
-        </Pressable>
       </View>
 
-      <TouchableOpacity onPress={() => Navigation.navigate("signUp")} style={styles.btnSI} >
+      <TouchableOpacity onPress={handleLogin} style={styles.btnSI} >
         <Text style={styles.cadastroSI}> ENTRAR </Text>
       </TouchableOpacity>
-
-      <View style={styles.div}>
-        <Text style={styles.details}>Não tem uma conta ainda?</Text>
-        <Pressable onPress={() => Navigation.navigate("SignUp")}>
-          <Text style={{ color: "#345577", fontWeigh: "bold" }}> Crie uma aqui! </Text>
-        </Pressable>
-      </View>
-
 
     </ImageBackground>
   );

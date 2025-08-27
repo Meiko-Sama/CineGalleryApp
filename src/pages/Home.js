@@ -1,33 +1,51 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, ImageBackground, TouchableOpacity, Pressable, View } from 'react-native';
-
-// IMPORTANDO O ICONE
-import Foundation from '@expo/vector-icons/Foundation';
+import { Text, ImageBackground, TouchableOpacity, View } from 'react-native';
 
 import { styles } from '../styles/styles';
 
+// IMPORTAÇÃO DO NAVIGATION
 import { useNavigation } from '@react-navigation/native';
 
-export default function Menu() {
+//IMPORTAÇÃO DO ASYNC STORAGE
+import { removeItem } from '../components/AsyncStorage';
 
-  const Navigation = useNavigation();
+//IMPORTAÇÃO PAGINA GALERIA
+
+// IMPORTAÇÃO DE ICONE
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
+export default function Home() {
+
+  // DECLARANDO O NAVIGATION
+  const navigation = useNavigation();
+
+  // FAZENDO FUNÇÃO DO BOTÃO ENVIAR PARA PAGINA HOME
+  const handleReset = async () => {
+    await removeItem("login");
+    navigation.push("Login")
+  }
+
+  // FUNÇÃO PARA DIRECIONAR PARA PAGINA DE GALERIA DE FILMES
+  const Gallery = () => {
+    navigation.navigate("Gallery")
+  }
+
 
   return (
-    <ImageBackground style={styles.container} source={require("../images/menu2.jpg")}>
+    <ImageBackground style={styles.container} source={require("../images/Home.jpg")}>
+      <MaterialIcons name="movie" size={250} color="white" />
 
-      <Foundation name="mountains" size={120} color="#44704a" style={{ bottom: 80 }} />
+      <Text style={{ color: "white", fontSize: 25, fontWeight: "bold" }}> BEM VINDO A TELA HOME! </Text>
+      <Text style={{ color: "white", fontSize: 15 }}> O que deseja fazer?</Text>
 
-      <Text style={styles.titulo}>BEM VINDO</Text>
-      <Text style={styles.subTitulo}> Aventuras mais seguras, baratas e relaxantes para o usuário.</Text>
-
-      <TouchableOpacity style={styles.btn} onPress={() => Navigation.navigate("signIn")}>
-        <Text style={styles.login}>Entrar com o EMAIL</Text>
+      <TouchableOpacity onPress={Gallery} style={styles.galleryBTN}>
+        <Text style={{ color: "white", fontSize: 15, fontWeight: "bold" }}>Ir para a Galeria</Text>
       </TouchableOpacity>
 
-      <View style={styles.div}>
-        <Text style={styles.details}>Não tem uma conta ainda?</Text>
-        <Pressable onPress={() => Navigation.navigate("signUp")}><Text style={{ color: "blue", fontWeigh: "bold" }}> Crie uma aqui! </Text></Pressable>
-      </View>
+      {/* TEORICAMENTE AQUI É ONDE O REMOVE ITEM DEVE FICAR */}
+      <TouchableOpacity onPress={handleReset} style={styles.resetBTN}>
+        <Text style={{ color: "white", fontSize: 15, fontWeight: "bold" }}>SAIR</Text>
+      </TouchableOpacity>
 
     </ImageBackground>
   );
