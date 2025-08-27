@@ -6,11 +6,22 @@ import Foundation from '@expo/vector-icons/Foundation';
 
 import { styles } from '../styles/styles';
 
+// IMPORTAÇÃO DO NAVIGATION
 import { useNavigation } from '@react-navigation/native';
+
+//IMPORTAÇÃO DO ASYNC STORAGE
+import { removeItem } from '../components/AsyncStorage';
 
 export default function Menu() {
 
+  // DECLARANDO O NAVIGATION
   const Navigation = useNavigation();
+
+  // FAZENDO FUNÇÃO DO BOTÃO ENVIAR PARA PAGINA HOME
+  const handleReset = async () => {
+    navigation.push("Onboarding");
+    await removeItem("onboarded");
+  }
 
   return (
     <ImageBackground style={styles.container} source={require("../images/menu2.jpg")}>
