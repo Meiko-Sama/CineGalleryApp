@@ -9,6 +9,9 @@ import { useNavigation } from '@react-navigation/native';
 //IMPORTAÇÃO DO ASYNC STORAGE
 import { removeItem } from '../components/AsyncStorage';
 
+//IMPORTAÇÃO PAGINA GALERIA
+
+
 export default function Menu() {
 
   // DECLARANDO O NAVIGATION
@@ -30,7 +33,7 @@ export default function Menu() {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={handleReset} style={styles.resetButton}>
-        <Text>RESET</Text>
+        <Text>SAIR</Text>
       </TouchableOpacity>
 
     </ImageBackground>
