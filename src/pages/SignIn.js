@@ -17,6 +17,12 @@ export default function SignIn() {
 
   const Navigation = useNavigation();
 
+  // FAZENDO FUNÇÃO DO BOTÃO ENVIAR PARA PAGINA HOME
+  const handleReset = async () => {
+    navigation.push("Onboarding");
+    await removeItem("onboarded");
+  }
+
   return (
     <ImageBackground style={styles.containerSI} source={require("../images/LoginScreen.jpg")}>
 
