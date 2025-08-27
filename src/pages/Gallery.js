@@ -21,7 +21,7 @@ const spacing = 12
 
 // FUNÇÃO BACKDROPHOTO
 
-function BackdropPhoto({ photo, index, scrollX }) {
+function BackdropPhoto({ poster, index, scrollX }) {
   const stylez = useAnimatedStyle(() => {
     return {
 
@@ -29,13 +29,13 @@ function BackdropPhoto({ photo, index, scrollX }) {
     }
   })
   return (
-    <Animated.Image source={{ uri: photo.src.large }} style={[StyleSheet.absoluteFillObject, stylez]} blurRadius={10} />
+    <Animated.Image source={{ uri: poster }} style={[StyleSheet.absoluteFillObject, stylez]} blurRadius={10} />
   )
 }
 
 // FUNÇÃO PHOTO
 
-function Photo({ item, index, scrollX }) {
+function Poster({ item, index, scrollX }) {
   const stylez = useAnimatedStyle(() => {
     return {
       transform: [
@@ -50,14 +50,14 @@ function Photo({ item, index, scrollX }) {
   })
   return (
     <View style={{ width: imageWidth, height: imageHeight, overflow: "hidden", borderRadius: 20 }}>
-      <Animated.Image source={{ uri: item.src.large }} style={[{ flex: 1 }, stylez]} />
+      <Animated.Image source={{ uri: item }} style={[{ flex: 1 }, stylez]} />
     </View>
   )
 }
 
-export default function App() {
+export default function Gallery() {
 
-  const [data, setData] = useState({ photos: [] });
+  const [data, setData] = useState([]);
 
   // useSharedValue => Reativo as animações, quando o nosso scrollX.value for alterado
   // todas as animações a serem alteradas.
@@ -79,20 +79,12 @@ export default function App() {
       const res = await axios.get(
         "https://www.omdbapi.com/?s=movie&page=2&&apikey=161029c2",
       );
-      setData(res.data),
-        console.log(res.data)
+      const movieTheaterPosters = res.data.Search.map(movie => movie.Poster)
+      console.log(movieTheaterPosters)
+      setData(movieTheaterPosters)
     } catch (error) {
       console.log("Erro ao buscar as imagens: ", error)
     }
-  }
-
-  // CASO A FUNÇÃO DA REQUISIÇÃO DA API AINDA TIVER CARREGANDO ELE MOSTRARA ESSA TELA
-  if (data.photos === 0) {
-    return (
-      <View>
-        <Text>Carregando, aguarde um momento ...</Text>
-      </View>
-    )
   }
 
 
@@ -100,14 +92,14 @@ export default function App() {
     <View style={styles.container}>
 
       <View style={StyleSheet.absoluteFillObject}>
-        {data.photos((photo, index) => (
-          <BackdropPhoto key={photo.id} photo={photo} index={index} scrollX={scrollX} />
+        {data.map((poster, index) => (
+          <BackdropPhoto key={index} photo={poster} index={index} scrollX={scrollX} />
         ))}
       </View>
 
       <Animated.FlatList
-        data={data.photos}
-        keyExtractor={(item) => String(item.id)}
+        data={data}
+        keyExtractor={(index) => String(index)}
         horizontal
         style={{ flexGrow: 0 }}
         snapToInterval={imageWidth + spacing}
@@ -123,7 +115,7 @@ export default function App() {
         }}
         // contentContainerStyle => Aplicar estilo no conteúdo interno do nosso FLATLIST
 
-        renderItem={({ item, index }) => <Photo item={item} index={index} scrollX={scrollX} />}
+        renderItem={({ item, index }) => <Poster item={item} index={index} scrollX={scrollX} />}
         onScroll={onScroll}
         // onScroll => Função chama enquanto rolamos nossa "lista"
 

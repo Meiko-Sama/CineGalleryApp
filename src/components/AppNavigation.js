@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 import { getItem } from "./AsyncStorage";
 import SignIn from '../pages/SignIn';
 import Home from '../pages/Home';
-import Gallery from "../pages/Gallery";
+import Gallery from '../pages/Gallery';
 
 export default function AppNavigation() {
   const [showLogin, setShowLogin] = useState(null)
@@ -47,7 +47,7 @@ export default function AppNavigation() {
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={SignIn} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-          <Stack.Screen name="Galeria" component={Gallery} options={{ headerShown: false }} />
+          <Stack.Screen name="Gallery" component={Gallery} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     )
@@ -60,6 +60,7 @@ export default function AppNavigation() {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Login" component={SignIn} options={{ headerShown: false }} />
           <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+          <Stack.Screen name="Gallery" component={Gallery} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     )

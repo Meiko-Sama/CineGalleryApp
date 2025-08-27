@@ -11,6 +11,8 @@ import { removeItem } from '../components/AsyncStorage';
 
 //IMPORTAÇÃO PAGINA GALERIA
 
+// IMPORTAÇÃO DE ICONE
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 export default function Home() {
 
@@ -20,26 +22,29 @@ export default function Home() {
   // FAZENDO FUNÇÃO DO BOTÃO ENVIAR PARA PAGINA HOME
   const handleReset = async () => {
     await removeItem("login");
-    navigation.navigate("Home")
+    navigation.push("Login")
   }
 
   // FUNÇÃO PARA DIRECIONAR PARA PAGINA DE GALERIA DE FILMES
-  const Gallery = async () => {
+  const Gallery = () => {
     navigation.navigate("Gallery")
   }
 
+
   return (
-    <ImageBackground style={styles.container}>
+    <ImageBackground style={styles.container} source={require("../images/Home.jpg")}>
+      <MaterialIcons name="movie" size={250} color="white" />
 
-      <Text> BEM VINDO A TELA HOME! </Text>
+      <Text style={{ color: "white", fontSize: 25, fontWeight: "bold" }}> BEM VINDO A TELA HOME! </Text>
+      <Text style={{ color: "white", fontSize: 15 }}> O que deseja fazer?</Text>
 
-      <TouchableOpacity onPress={Gallery} style={styles.resetButton}>
-        <Text>Ir para a Galeria</Text>
+      <TouchableOpacity onPress={Gallery} style={styles.galleryBTN}>
+        <Text style={{ color: "white", fontSize: 15, fontWeight: "bold" }}>Ir para a Galeria</Text>
       </TouchableOpacity>
 
       {/* TEORICAMENTE AQUI É ONDE O REMOVE ITEM DEVE FICAR */}
-      <TouchableOpacity onPress={handleReset} style={styles.resetButton}>
-        <Text>SAIR</Text>
+      <TouchableOpacity onPress={handleReset} style={styles.resetBTN}>
+        <Text style={{ color: "white", fontSize: 15, fontWeight: "bold" }}>SAIR</Text>
       </TouchableOpacity>
 
     </ImageBackground>

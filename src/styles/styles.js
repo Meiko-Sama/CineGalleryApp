@@ -48,15 +48,17 @@ export const styles = StyleSheet.create({
   },
 
   tituloSI: {
-    color: "white",
-    fontSize: 20,
+    color: "rgb(130, 0, 0)",
+    backgroundColor: "white",
+    fontSize: 27,
     fontWeight: "bold",
     bottom: 100,
   },
 
   subTituloSI: {
-    color: "white",
-    fontSize: 13,
+    color: "rgb(130, 0, 0)",
+    backgroundColor: "white",
+    fontSize: 20,
     fontStyle: "italic",
     bottom: 100,
   },
@@ -67,14 +69,14 @@ export const styles = StyleSheet.create({
 
   input: {
     backgroundColor: "rgba(221, 221, 221, 0.64)",
-    width: 230,
-    height: 35,
+    width: 300,
+    height: 40,
     borderRadius: 30,
     bottom: 40,
   },
 
   btnSI: {
-    backgroundColor: "#345577",
+    backgroundColor: "rgb(130, 0, 0)",
     width: 280,
     height: 40,
     borderRadius: 30,
@@ -83,7 +85,7 @@ export const styles = StyleSheet.create({
   },
 
   cadastroSI: {
-    color: "#6ea2d0",
+    color: "white",
     fontStyle: "italic",
   },
 
@@ -101,6 +103,26 @@ export const styles = StyleSheet.create({
   details_singUP: {
     bottom: 40,
     color: "white"
+  },
+
+  resetBTN: {
+    backgroundColor: "gray",
+    width: 280,
+    height: 40,
+    borderRadius: 30,
+    top: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  galleryBTN: {
+    backgroundColor: "gray",
+    width: 280,
+    height: 40,
+    borderRadius: 30,
+    top: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 
 });

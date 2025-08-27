@@ -14,6 +14,10 @@ import { styles } from '../styles/styles';
 import { useNavigation } from '@react-navigation/native';
 import { setItem } from '../components/AsyncStorage';
 
+// IMPORTAÇÃO DE ICONE
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
+
 export default function SignIn() {
 
   const navigation = useNavigation();
@@ -24,11 +28,11 @@ export default function SignIn() {
     await setItem("login", "1")
     navigation.navigate("Home")
   }
-
   return (
     <ImageBackground style={styles.containerSI} source={require("../images/LoginScreen.jpg")}>
+      <MaterialIcons name="movie" size={100} color="white" style={{ left: -120, bottom: 180 }} />
 
-      <Foundation name="mountains" size={70} color="#345577" style={{ bottom: 190, right: 130 }} />
+
 
       <Text style={styles.tituloSI}>ACESSE SUA CONTA!</Text>
       <Text style={styles.subTituloSI}> Bem vindo de volta usuário!</Text>
@@ -41,7 +45,7 @@ export default function SignIn() {
       </View>
 
       <TouchableOpacity onPress={handleLogin} style={styles.btnSI} >
-        <Text style={styles.cadastroSI}> ENTRARXXX </Text>
+        <Text style={styles.cadastroSI}> ENTRAR </Text>
       </TouchableOpacity>
 
     </ImageBackground>
